@@ -23,10 +23,18 @@ in
 
 # To mount NFS share
   boot.supportedFilesystems = [ "nfs" ];
+
   # Media Server
   fileSystems."/mnt/TrueNas-Media" =
     {
-      device = "${secrets.nasHost}:${secrets.nasExport}";
+      device = "${secrets.nasHost}:${secrets.nasMedia}";
+      fsType = "nfs4";
+    };
+
+  # Configuration
+  fileSystems."/mnt/TrueNas-Configuration" =
+    {
+      device = "${secrets.nasHost}:${secrets.nasConf}";
       fsType = "nfs4";
     };
 
