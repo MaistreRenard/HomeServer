@@ -3,25 +3,25 @@ let
   # DO NOT COMMIT
   secrets = import ./private/secrets.nix;
 in
-{
+  {
   imports = [
-	./modules/proxmox-lxc.nix
-	./modules/openssh.nix
-	./modules/utils.nix
-	./modules/neovim.nix
-	./modules/tailscale.nix
-	./modules/jellyfin.nix
+    ./modules/proxmox-lxc.nix
+    ./modules/openssh.nix
+    ./modules/utils.nix
+    ./modules/neovim.nix
+    ./modules/tailscale.nix
+    ./modules/jellyfin.nix
   ];
 
   # Base user
   users.users.nicoco = {
-	createHome = true;
-	isNormalUser  = true;
-	extraGroups = [ "wheel" ];
-  home = "/home/nicoco";
+    createHome = true;
+    isNormalUser  = true;
+    extraGroups = [ "wheel" ];
+    home = "/home/nicoco";
   };
 
-# To mount NFS share
+  # To mount NFS share
   boot.supportedFilesystems = [ "nfs" ];
 
   # Media Server
