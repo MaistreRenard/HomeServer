@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Home Server
 This repo sets up my Home Server running Proxmox with NixOS LXC containers
 
@@ -9,9 +10,10 @@ passwd --delete root
 ```
 
 Install GIT:
+=======
+# CT-NixOS-Jellyseerr
+This is my Jellyseerr LXC container running on NixOS. To build run:
+>>>>>>> 41da472 (CT-NixOS-Jellyseerr: Initial configuration)
 ```shell
-nix-channel --update
-nix-env -f '<nixpkgs>' -iA git
-rm -rf /etc/nixos
-git clone https://github.com/MaistreRenard/HomeServer.git /etc/nixos
+nixos-rebuild switch
 ```
