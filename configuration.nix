@@ -22,7 +22,7 @@ in
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
 
-# To mount NFS share
+ # To mount NFS share
   boot.supportedFilesystems = [ "nfs" ];
 
   # Media Server
@@ -40,5 +40,4 @@ in
     };
 
   system.stateVersion = "25.05";
->>>>>>> bd519e5 (CT-NixOS-Jellyfin: Initial configuration)
 }

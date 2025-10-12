@@ -7,7 +7,6 @@
 		settings = {
 			PasswordAuthentication = true;
 			PermitRootLogin = "yes";
-			PermitEmptyPasswords = "no";
 		};
 	};
 }
