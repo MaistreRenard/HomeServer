@@ -12,6 +12,7 @@ in
 		./modules/utils.nix
 		./modules/tailscale.nix
 		./modules/jellyfin.nix
+		./modules/jellyseer.nix
 	];
 	
 	home-manager.useUserPackages = true;
