@@ -13,6 +13,7 @@ in
 		./modules/tailscale.nix
 		./modules/jellyfin.nix
 		./modules/jellyseer.nix
+		./modules/sonarr.nix
 	];
 	
 	home-manager.useUserPackages = true;
