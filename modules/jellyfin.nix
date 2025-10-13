@@ -1,5 +1,19 @@
 { pkgs, ... }:
 {
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      libvdpau-va-gl
+      intel-compute-runtime
+      onevpl-intel-gpu
+    ];
+  };
+
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
+
   services.jellyfin = {
     enable = true;
     openFirewall = true;
@@ -24,4 +38,6 @@
     # when trying to hot-reload namespace configuration changes.
     stopIfChanged = true;
   };
+
+  users.users.jellyfin.extraGroups = [ "video" "render" ];
 }
