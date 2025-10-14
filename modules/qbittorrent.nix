@@ -3,8 +3,7 @@
   services.qbittorrent = {
     enable = true;
     openFirewall = true;
-    profileDir = "/mnt/TrueNas-Configuration/qBittorrent/profile";
-    serverConfig = "/mnt/TrueNas-Configuration/qBittorrent/config";
+    profileDir = "/mnt/TrueNas-Configuration";
   };
 
   systemd.services.qbittorrent = {
