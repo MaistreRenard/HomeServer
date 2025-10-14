@@ -14,6 +14,7 @@ in
 		./modules/jellyfin.nix
 		./modules/jellyseer.nix
 		./modules/sonarr.nix
+		./modules/radarr.nix
 	];
 	
 	home-manager.useUserPackages = true;
