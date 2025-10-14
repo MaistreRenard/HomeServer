@@ -5,15 +5,14 @@
     openFirewall = true;
   };
 
-  # Looks like prowlarr do not have an option dataDir or confDir.
-  # In order to load the configuration from the share, let's use
-  # a symlink instead.
-  systemd.tmpfiles.rules = [
-    "L+ /var/lib/prowlarr - - - - /mnt/TrueNas-Configuration/prowlarr"
-  ];
-
   systemd.services.prowlarr = {
     serviceConfig = {
+      # Looks like prowlarr do not have an option dataDir or confDir.
+      # Let's setup from the service config
+      ExecStart = lib.mkForce "${lib.getExe pkgs.prowlarr} -nobrowser -data=/mnt/TrueNas-Configuration/prowlarr";
+      StateDirectory = lib.mkForce "";
+
+
       # Allow writes to NFS-mounted config directory.
       # The jellyseerr service has ProtectSystem=strict by default, which makes
       # the entire filesystem read-only except for /dev, /proc, /sys.
