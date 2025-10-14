@@ -15,6 +15,7 @@ in
 		./modules/jellyseer.nix
 		./modules/sonarr.nix
 		./modules/radarr.nix
+		./modules/prowlarr.nix
 	];
 	
 	home-manager.useUserPackages = true;
@@ -24,7 +25,7 @@ in
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
 
- # To mount NFS share
+  # To mount NFS share
   boot.supportedFilesystems = [ "nfs" ];
 
   # Media Server
