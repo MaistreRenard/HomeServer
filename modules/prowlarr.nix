@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   services.prowlarr = {
     enable = true;
@@ -6,6 +6,10 @@
   };
 
   systemd.services.prowlarr = {
+    # Forces prowlarr to wait for the nfs share
+    after = [ "mnt-TrueNas\\x2dConfiguration.mount" "mnt-TrueNas\\x2dMedia.mount" ];
+    requires = [ "mnt-TrueNas\\x2dConfiguration.mount" "mnt-TrueNas\\x2dMedia.mount" ];
+
     serviceConfig = {
       # Looks like prowlarr do not have an option dataDir or confDir.
       # Let's setup from the service config
