@@ -1,7 +1,14 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  # The version on stable is pretty old so let's use the unstable repo
+  unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+in
 {
+  environment.systemPackages = [ unstable.suwayomi-server ];
+
   services.suwayomi-server = {
     enable = true;
+    package = unstable.suwayomi-server;
     openFirewall = true;
     dataDir = "/mnt/TrueNas-Configuration/suwayomi/config";
     settings = {
