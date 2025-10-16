@@ -38,5 +38,21 @@ in
 	     fsType = "nfs4";
 	   };
 
+	# Tailscale route
+	systemd.services.secondGateway = {
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      description = "Setup additional Gateway";
+      path = [pkgs.bash pkgs.iproute2];
+      script = ''
+             ip route add ${secrets.tailscaleSubnet}/8 via ${secrets.tailscaleHost}
+             '';
+      serviceConfig = {
+        Type= "oneshot";
+        User = "root";
+        Restart = "no";
+      };
+   };
+
 	system.stateVersion = "25.05";
 }
