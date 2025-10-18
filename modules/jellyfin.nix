@@ -22,6 +22,10 @@
   };
 
   systemd.services.jellyfin = {
+    # Forces prowlarr to wait for the nfs share
+    after = [ "mnt-TrueNas\\x2dConfiguration.mount" "mnt-TrueNas\\x2dMedia.mount" ];
+    requires = [ "mnt-TrueNas\\x2dConfiguration.mount" "mnt-TrueNas\\x2dMedia.mount" ];
+
     serviceConfig = {
       # Allow writes to NFS-mounted config directory.
       # The jellyseerr service has ProtectSystem=strict by default, which makes
