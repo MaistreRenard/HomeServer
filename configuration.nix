@@ -10,7 +10,6 @@ in
 		./modules/proxmox-lxc.nix
 		./modules/openssh.nix
 		./modules/utils.nix
-		./modules/neovim.nix
 		./modules/tailscale.nix
 		./modules/jellyfin.nix
 	];
