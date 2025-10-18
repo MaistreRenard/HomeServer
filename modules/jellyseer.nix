@@ -7,6 +7,10 @@
   };
 
    systemd.services.jellyseerr = {
+    # Forces suwayomi to wait for the nfs share
+    after = [ "mnt-TrueNas\\x2dConfiguration.mount" ];
+    requires = [ "mnt-TrueNas\\x2dConfiguration.mount" ];
+
     serviceConfig = {
       # Allow writes to NFS-mounted config directory.
       # The jellyseerr service has ProtectSystem=strict by default, which makes
