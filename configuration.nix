@@ -1,24 +1,23 @@
 { config, modulesPath, pkgs, lib, ... }:
 let
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
 	# DO NOT COMMIT
 	secrets = import ./private/secrets.nix;
 in
-	{
+{
 	imports = [
-		./modules/proxmox-lxc.nix
+		(import "${home-manager}/nixos")
 		./modules/openssh.nix
-		./modules/utils.nix
-		./modules/neovim.nix
+		./modules/proxmox-lxc.nix
 		./modules/tailscale.nix
 	];
-
-	# Base user
-	users.users.nicoco = {
-		createHome = true;
-		isNormalUser  = true;
-		extraGroups = [ "wheel" ];
-		home = "/home/nicoco";
-	};
+	
+	home-manager.useUserPackages = true;
+	home-manager.useGlobalPkgs = true;
+	home-manager.backupFileExtension = "backup";
+	home-manager.users.root = import ./modules/home.nix;
+	programs.zsh.enable = true;
+	users.defaultUserShell = pkgs.zsh;
 
 	# # To mount NFS share
 	#  boot.supportedFilesystems = [ "nfs" ];
@@ -37,5 +36,10 @@ in
 	#      fsType = "nfs4";
 	#    };
 	#
+	
+	fonts.packages = with pkgs; [
+		jetbrains-mono
+	];
+
 	system.stateVersion = "25.05";
 }

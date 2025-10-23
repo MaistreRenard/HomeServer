@@ -6,7 +6,7 @@
 		ports = [ 22 ];
 		settings = {
 			PasswordAuthentication = true;
-			PermitRootLogin = "prohibit-password";
+			PermitRootLogin = "yes";
 			PermitEmptyPasswords = "no";
 		};
 	};
