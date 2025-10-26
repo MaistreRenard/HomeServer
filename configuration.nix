@@ -7,6 +7,7 @@ in
 {
 	imports = [
 		(import "${home-manager}/nixos")
+		./modules/nextcloud.nix
 		./modules/openssh.nix
 		./modules/proxmox-lxc.nix
 		./modules/tailscale.nix
@@ -19,23 +20,16 @@ in
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
 
-	# # To mount NFS share
-	#  boot.supportedFilesystems = [ "nfs" ];
-	#
-	#  # Media Server
-	#  fileSystems."/mnt/TrueNas-Media" =
-	#    {
-	#      device = "${secrets.nasHost}:${secrets.nasMedia}";
-	#      fsType = "nfs4";
-	#    };
-	#
-	#  # Configuration
-	#  fileSystems."/mnt/TrueNas-Configuration" =
-	#    {
-	#      device = "${secrets.nasHost}:${secrets.nasConf}";
-	#      fsType = "nfs4";
-	#    };
-	#
+	# To mount NFS share
+	 boot.supportedFilesystems = [ "nfs" ];
+
+	 # Configuration
+	 fileSystems."/mnt/TrueNas-Configuration" =
+	   {
+	     device = "${secrets.nasHost}:${secrets.nasConf}";
+	     fsType = "nfs4";
+	   };
+
 	
 	fonts.packages = with pkgs; [
 		jetbrains-mono
