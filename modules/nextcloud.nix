@@ -63,5 +63,5 @@ in
         stopIfChanged = true;
     };
 
-    environment.systemPackages = [ pkgs.smbclient ];
+    environment.systemPackages = [ pkgs.samba ];
 }
