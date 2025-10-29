@@ -36,6 +36,24 @@ in
             loglevel = 1;
             log_type = "file";
             trusted_domains = secrets.nextcloudDomain;
+            enabledPreviewProviders = [
+                "OC\\Preview\\BMP"
+                "OC\\Preview\\GIF"
+                "OC\\Preview\\JPEG"
+                "OC\\Preview\\Krita"
+                "OC\\Preview\\MarkDown"
+                "OC\\Preview\\MP3"
+                "OC\\Preview\\MP4"
+                "OC\\Preview\\Movie"
+                "OC\\Preview\\MKV"
+                "OC\\Preview\\AVI"
+                "OC\\Preview\\OpenDocument"
+                "OC\\Preview\\PNG"
+                "OC\\Preview\\TXT"
+                "OC\\Preview\\XBitmap"
+                "OC\\Preview\\HEIC"
+            ];
+            preview_ffmpeg_path = "${pkgs.ffmpeg}/bin/ffmpeg";
         };
     };
 
@@ -63,5 +81,5 @@ in
         stopIfChanged = true;
     };
 
-    environment.systemPackages = [ pkgs.samba ];
+    environment.systemPackages = [ pkgs.samba pkgs.ffmpeg ];
 }
