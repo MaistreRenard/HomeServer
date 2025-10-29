@@ -7,11 +7,12 @@ in
 {
 	imports = [
 		(import "${home-manager}/nixos")
+		./modules/immich.nix
 		./modules/openssh.nix
 		./modules/proxmox-lxc.nix
 		./modules/tailscale.nix
 	];
-	
+
 	home-manager.useUserPackages = true;
 	home-manager.useGlobalPkgs = true;
 	home-manager.backupFileExtension = "backup";
@@ -19,24 +20,23 @@ in
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
 
-	# # To mount NFS share
-	#  boot.supportedFilesystems = [ "nfs" ];
-	#
-	#  # Media Server
-	#  fileSystems."/mnt/TrueNas-Media" =
-	#    {
-	#      device = "${secrets.nasHost}:${secrets.nasMedia}";
-	#      fsType = "nfs4";
-	#    };
-	#
-	#  # Configuration
-	#  fileSystems."/mnt/TrueNas-Configuration" =
-	#    {
-	#      device = "${secrets.nasHost}:${secrets.nasConf}";
-	#      fsType = "nfs4";
-	#    };
-	#
-	
+	# Media Server
+	environment.systemPackages = [ pkgs.cifs-utils ];
+	fileSystems."/mnt/TrueNas-Photo/share" =
+	{
+		device = "//${secrets.nasHost}/share";
+		fsType = "cifs";
+		options = ["credentials=/etc/nixos/private/cifs-share"];
+	};
+	fileSystems."/mnt/TrueNas-Photo/nicoco" =
+	{
+		device = "//${secrets.nasHost}/nicoco";
+		fsType = "cifs";
+		options = ["credentials=/etc/nixos/private/cifs-nicoco"];
+	};
+
+
+
 	fonts.packages = with pkgs; [
 		jetbrains-mono
 	];
