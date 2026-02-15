@@ -2,8 +2,7 @@
 let
   devConf = pkgs.fetchgit {
     url = "https://github.com/MaistreRenard/devconf-base.git";
-    rev = "main";
-    sha256 = "sha256-WYw3ehz/ewuyi4LkF8gxgK+U5qTceN/Nx8biSQXr9LQ=";
+    sha256 = "sha256-yZEYkd55w1Bcbces75a5lxAEPdF01Kd+zC1jdggOEqM=";
   };
 in
   {
