@@ -6,7 +6,7 @@
       intel-media-driver
       libvdpau-va-gl
       intel-compute-runtime
-      onevpl-intel-gpu
+      vpl-gpu-rt
     ];
   };
 
