@@ -4,7 +4,6 @@
         enable = true;
         host = "0.0.0.0";
         openFirewall = true;
-        mediaLocation="/mnt/TrueNas-Photo/share/immich";
     };
 
     systemd.services.immich-server = {
