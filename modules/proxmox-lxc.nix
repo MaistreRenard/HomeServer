@@ -13,12 +13,4 @@
 
   # Let Proxmox host handle fstrim
   services.fstrim.enable = false;
-
-  # Cache DNS lookups to improve performance
-  services.resolved = {
-    extraConfig = ''
-      Cache=true
-      CacheFromLocalhost=true
-    '';
-  };
 }
