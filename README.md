@@ -6,6 +6,14 @@ In a newly created LXC:
 # Source: https://nixos.wiki/wiki/Proxmox_Linux_Container
 source /etc/set-environment
 passwd --delete root
+passwd root
+```
+
+Update NixOS channel to unstable
+```
+nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+nix-channel --update
+nixos-rebuild switch --upgrade
 ```
 
 Install GIT:
