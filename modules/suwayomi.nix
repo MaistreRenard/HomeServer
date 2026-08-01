@@ -1,21 +1,28 @@
 { config, lib, pkgs, ... }:
-let
-  # The version on stable is pretty old so let's use the unstable repo
-  unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
-in
 {
-  environment.systemPackages = [ unstable.suwayomi-server ];
+  nixpkgs.overlays = [
+    (final: prev: {
+      suwayomi-server = prev.suwayomi-server.overrideAttrs (oldAttrs: rec {
+        version = "2.3.2243";
+        src = prev.fetchurl {
+          url = "https://github.com/Suwayomi/Suwayomi-Server/releases/download/v${version}/Suwayomi-Server-v${version}.jar";
+          hash = "sha256-ghFBsy4XDUoC08vf7Vd+2PB70iOD/19BMuu1rkDpjdU=";
+        };
+      });
+    })
+  ];
 
   services.suwayomi-server = {
     enable = true;
-    package = unstable.suwayomi-server;
+    package = pkgs.suwayomi-server;
     openFirewall = true;
     dataDir = "/mnt/TrueNas-Configuration/suwayomi/config";
     settings = {
             server = {
                 downloadAsCbz = true;
                 extensionRepo = [
-                    "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+                    "https://github.com/keiyoushi/extensions/raw/repo/index.pb"
+                    "https://github.com/yuzono/manga-repo/raw/repo/index.pb"
                 ];
             };
     };
