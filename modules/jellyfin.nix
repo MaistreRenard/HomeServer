@@ -3,15 +3,9 @@
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver
-      libvdpau-va-gl
-      intel-compute-runtime
-      vpl-gpu-rt
+      mesa
+      libva
     ];
-  };
-
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
   };
 
   services.jellyfin = {
