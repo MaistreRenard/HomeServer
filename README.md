@@ -1,3 +1,4 @@
+Setup LXC container
 ```shell
 # Source: https://nixos.wiki/wiki/Proxmox_Linux_Container
 source /etc/set-environment
